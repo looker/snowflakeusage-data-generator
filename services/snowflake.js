@@ -79,8 +79,10 @@ export default class Snowflake {
   async createStage(stageName, bucketName) {
     const sqlText = `create or replace stage
         ${stageName} url='s3://${bucketName}'
-      credentials=(aws_key_id='${process.env.AWS_ACCESS_KEY_ID}'
-        aws_secret_key='${process.env.AWS_SECRET_ACCESS_KEY}')
+      credentials=(
+        aws_key_id='${process.env.AWS_ACCESS_KEY_ID}'
+        aws_secret_key='${process.env.AWS_SECRET_ACCESS_KEY}'
+      )
       file_format = (type=csv skip_header=1);`;
     return this.execute(sqlText);
   }
