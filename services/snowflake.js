@@ -43,14 +43,12 @@ export default class Snowflake {
           if (err) {
             reject(err);
             console.error(
-              `Failed to execute statement ${stmt.getSqlText()} due to the following error: ` +
+              `Failed to execute statement due to the following error: ` +
                 err.message
             );
           } else {
             resolve(rows);
-            console.log(
-              "Successfully executed statement: " + stmt.getSqlText()
-            );
+            console.log("Successfully executed statement");
           }
         }
       });
