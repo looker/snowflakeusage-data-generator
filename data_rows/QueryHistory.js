@@ -16,7 +16,7 @@ export default class QueryHistory extends DataRow {
   constructor(databaseName, date) {
     super();
     this.QUERY_ID = uuid4();
-    this.setQueryText();
+    this._setQueryText();
     this.DATABASE_NAME = databaseName;
     const queryType = helpers.randomFromArray(this._getQueryTypes());
     this.QUERY_TYPE = queryType.type;
@@ -26,17 +26,17 @@ export default class QueryHistory extends DataRow {
       ["BIG_WH", "X-Large"],
       ["SMALL_WH", "Small"]
     ]);
-    this.setExecutionStatus();
+    this._setExecutionStatus();
     this.START_TIME = date.toISOString();
     this.COMPILATION_TIME = Math.round(Math.random() * 1000);
-    this.setExecutionTime(user.querySpeed, queryType.querySpeed);
+    this._setExecutionTime(user.querySpeed, queryType.querySpeed);
     this.QUEUED_REPAIR_TIME = 0;
     this.QUEUED_OVERLOAD_TIME =
       Math.random() < 0.2 ? Math.round(Math.random() * 1000) : 0;
-    this.setTransactionBlockedtime();
+    this._setTransactionBlockedtime();
   }
 
-  setQueryText() {
+  _setQueryText() {
     const queries = ["SHOW USERS", "SHOW WAREHOUSES", "SELECT foo FROM bar"];
     this.QUERY_TEXT = helpers.randomFromArray(queries);
   }
@@ -53,7 +53,7 @@ export default class QueryHistory extends DataRow {
     ];
   }
 
-  setExecutionStatus() {
+  _setExecutionStatus() {
     const statuses = [
       { weight: 0.9, name: "SUCCESS" },
       { weight: 0.31, name: "RUNNING" },
@@ -66,7 +66,7 @@ export default class QueryHistory extends DataRow {
     this.EXECUTION_STATUS = helpers.randomFromArrayByWeight(statuses);
   }
 
-  setExecutionTime(userQuerySpeed, queryTypeSpeed) {
+  _setExecutionTime(userQuerySpeed, queryTypeSpeed) {
     const warehouseQuerySpeed = {
       BIG_WH: 0.5,
       SMALL_WH: 1.5
@@ -75,7 +75,7 @@ export default class QueryHistory extends DataRow {
     this.EXECUTION_TIME = Math.round(Math.random() * factor);
   }
 
-  setTransactionBlockedtime() {
+  _setTransactionBlockedtime() {
     this.TRANSACTION_BLOCKED_TIME = 0;
     if (Math.random() < 0.05) {
       this.TRANSACTION_BLOCKED_TIME = Math.round(Math.random() * 1000);

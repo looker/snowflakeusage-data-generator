@@ -10,7 +10,7 @@ import { randomFromArray } from "../helpers";
 export default class WarehouseMeteringHistory extends DataRow {
   constructor(date) {
     super();
-    this.setStartAndEnd(date);
+    this._setStartAndEnd(date);
     this.WAREHOUSE_NAME = randomFromArray(["BIG_WH", "SMALL_WH"]);
     this.CREDITS_USED = Math.random() * 100;
     if (this.WAREHOUSE_NAME == "SMALL_WH") {
@@ -19,7 +19,7 @@ export default class WarehouseMeteringHistory extends DataRow {
     this.CREDITS_USED.toFixed(2);
   }
 
-  setStartAndEnd(date) {
+  _setStartAndEnd(date) {
     this.START_TIME = date.toISOString();
     const end = new Date(date);
     end.setHours(date.getHours() + 1);
