@@ -199,16 +199,4 @@ async function generate(daysAgoToEnd, daysToGenerate) {
   }
 }
 
-async function backfill() {
-  const DAYS_TO_BACKFILL = 360;
-  const BATCH_SIZE = 360;
-
-  let overallDay = DAYS_TO_BACKFILL;
-  while (overallDay > 0) {
-    console.log(overallDay);
-    overallDay -= BATCH_SIZE;
-    await generate(overallDay, BATCH_SIZE);
-  }
-}
-
-backfill().catch(e => console.log(e));
+generate(0, 360).catch(e => console.log(e));
