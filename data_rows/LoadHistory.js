@@ -1,6 +1,8 @@
 import DataRow from "./DataRow";
 import TYPES from "./Types";
 
+const ODDS_NEW = 0.2;
+
 /**
  * LOAD_HISTORY View
  *
@@ -16,7 +18,7 @@ export default class LoadHistory extends DataRow {
   }
 
   static oddsNew() {
-    return 0.2;
+    return ODDS_NEW;
   }
 
   static types() {

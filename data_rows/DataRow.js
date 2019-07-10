@@ -2,7 +2,7 @@ import stringify from "csv-stringify";
 import fs from "graceful-fs";
 
 export default class DataRow {
-  oddsNew() {
+  static oddsNew() {
     return 1;
   }
 

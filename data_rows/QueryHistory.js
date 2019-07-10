@@ -5,6 +5,8 @@ import LoginHistory from "./LoginHistory";
 import TYPES from "./Types";
 import * as helpers from "../helpers";
 
+const ODDS_NEW = 0.3;
+
 /**
  * QUERY_HISTORY View
  *
@@ -81,7 +83,7 @@ export default class QueryHistory extends DataRow {
   }
 
   static oddsNew() {
-    return 0.3;
+    return ODDS_NEW;
   }
 
   static types() {
