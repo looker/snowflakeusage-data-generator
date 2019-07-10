@@ -1,12 +1,12 @@
 import DataRow from "./DataRow";
-import { TYPES } from "./Types";
+import TYPES from "./Types";
 
 /**
  * DATABASES View
  *
  * https://docs.snowflake.net/manuals/sql-reference/account-usage/databases.html
  */
-export class Databases extends DataRow {
+export default class Databases extends DataRow {
   constructor(name, id) {
     super();
     this.DATABASE_NAME = name;

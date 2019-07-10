@@ -1,5 +1,5 @@
 import DataRow from "./DataRow";
-import { TYPES } from "./Types";
+import TYPES from "./Types";
 import { randomFromArray } from "../helpers";
 
 class InitializeError extends Error {}
@@ -9,7 +9,7 @@ class InitializeError extends Error {}
  *
  * https://docs.snowflake.net/manuals/sql-reference/account-usage/database_storage_usage_history.html
  */
-export class DatabaseStorageUsageHistory extends DataRow {
+export default class DatabaseStorageUsageHistory extends DataRow {
   constructor(databaseID, databaseName, date) {
     super();
     if (!this.constructor._sizes) {

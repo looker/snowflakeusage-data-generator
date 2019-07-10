@@ -1,5 +1,5 @@
 import DataRow from "./DataRow";
-import { TYPES } from "./Types";
+import TYPES from "./Types";
 import { randomFromArray } from "../helpers";
 
 /**
@@ -7,7 +7,7 @@ import { randomFromArray } from "../helpers";
  *
  * https://docs.snowflake.net/manuals/sql-reference/account-usage/warehouse_metering_history.html
  */
-export class WarehouseMeteringHistory extends DataRow {
+export default class WarehouseMeteringHistory extends DataRow {
   constructor(date) {
     super();
     this.setStartAndEnd(date);

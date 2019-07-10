@@ -1,5 +1,5 @@
 import DataRow from "./DataRow";
-import { TYPES } from "./Types";
+import TYPES from "./Types";
 import * as helpers from "../helpers";
 
 /**
@@ -7,7 +7,7 @@ import * as helpers from "../helpers";
  *
  * https://docs.snowflake.net/manuals/sql-reference/account-usage/login_history.html
  */
-export class LoginHistory extends DataRow {
+export default class LoginHistory extends DataRow {
   constructor(date) {
     super();
     this.EVENT_ID = helpers.getID();

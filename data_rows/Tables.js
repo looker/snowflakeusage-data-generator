@@ -1,7 +1,7 @@
 import DataRow from "./DataRow";
-import { TYPES } from "./Types";
+import TYPES from "./Types";
 
-export class Tables extends DataRow {
+export default class Tables extends DataRow {
   constructor(id) {
     super();
     this.ID = id;

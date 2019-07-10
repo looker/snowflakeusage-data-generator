@@ -1,8 +1,8 @@
 import uuid4 from "uuid/v4";
 
 import DataRow from "./DataRow";
-import { LoginHistory } from "./LoginHistory";
-import { TYPES } from "./Types";
+import LoginHistory from "./LoginHistory";
+import TYPES from "./Types";
 import * as helpers from "../helpers";
 
 /**
@@ -10,7 +10,7 @@ import * as helpers from "../helpers";
  *
  * https://docs.snowflake.net/manuals/sql-reference/account-usage/query_history.html
  */
-export class QueryHistory extends DataRow {
+export default class QueryHistory extends DataRow {
   constructor(databaseName, date) {
     super();
     this.QUERY_ID = uuid4();

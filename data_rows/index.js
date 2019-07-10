@@ -1,11 +1,11 @@
-import { Databases } from "./Databases";
-import { DatabaseStorageUsageHistory } from "./DatabaseStorageUsageHistory";
-import { LoadHistory } from "./LoadHistory";
-import { LoginHistory } from "./LoginHistory";
-import { QueryHistory } from "./QueryHistory";
-import { StorageUsage } from "./StorageUsage";
-import { Tables } from "./Tables";
-import { WarehouseMeteringHistory } from "./WarehouseMeteringHistory";
+import Databases from "./Databases";
+import DatabaseStorageUsageHistory from "./DatabaseStorageUsageHistory";
+import LoadHistory from "./LoadHistory";
+import LoginHistory from "./LoginHistory";
+import QueryHistory from "./QueryHistory";
+import StorageUsage from "./StorageUsage";
+import Tables from "./Tables";
+import WarehouseMeteringHistory from "./WarehouseMeteringHistory";
 
 export const TABLE_NAMES = [
   "DATABASE_STORAGE_USAGE_HISTORY",

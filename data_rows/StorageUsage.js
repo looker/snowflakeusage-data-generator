@@ -1,12 +1,12 @@
 import DataRow from "./DataRow";
-import { TYPES } from "./Types";
+import TYPES from "./Types";
 
 /**
  * STORAGE_USAGE View
  *
  * https://docs.snowflake.net/manuals/sql-reference/account-usage/storage_usage.html#storage-usage-view
  */
-export class StorageUsage extends DataRow {
+export default class StorageUsage extends DataRow {
   constructor(dbStorageUsageHistories, date) {
     super();
     this.USAGE_DATE = date.toISOString();

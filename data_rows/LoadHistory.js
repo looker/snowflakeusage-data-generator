@@ -1,12 +1,12 @@
 import DataRow from "./DataRow";
-import { TYPES } from "./Types";
+import TYPES from "./Types";
 
 /**
  * LOAD_HISTORY View
  *
  * https://docs.snowflake.net/manuals/sql-reference/account-usage/load_history.html
  */
-export class LoadHistory extends DataRow {
+export default class LoadHistory extends DataRow {
   constructor(tableID, date) {
     super();
     this.TABLE_ID = tableID;
