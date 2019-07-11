@@ -12,11 +12,11 @@ export default class WarehouseMeteringHistory extends DataRow {
     super();
     this._setStartAndEnd(date);
     this.WAREHOUSE_NAME = randomFromArray(["BIG_WH", "SMALL_WH"]);
-    this.CREDITS_USED = Math.random() * 100;
+    let credits_used = Math.random();
     if (this.WAREHOUSE_NAME == "SMALL_WH") {
-      this.CREDITS_USED *= 0.3;
+      credits_used *= 0.3;
     }
-    this.CREDITS_USED.toFixed(2);
+    this.CREDITS_USED = credits_used.toFixed(2);
   }
 
   _setStartAndEnd(date) {
