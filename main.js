@@ -192,6 +192,7 @@ async function generate(daysAgoToEnd, daysToGenerate) {
     await snowflakeService.createSchema("account_usage");
     await deleteSnowflakeTables(snowflakeService, models.TABLE_NAMES);
     await createSnowflakeTables(snowflakeService, models.TABLE_NAMES);
+    await snowflakeService.doAllGrants("looker_role");
     await uploadSessionDataSnowflake(snowflakeService);
   } catch (e) {
     console.log(e);
