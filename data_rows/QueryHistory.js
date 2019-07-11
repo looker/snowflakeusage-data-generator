@@ -16,10 +16,13 @@ export default class QueryHistory extends DataRow {
   constructor(databaseName, date) {
     super();
     this.QUERY_ID = uuid4();
-    this._setQueryText();
     this.DATABASE_NAME = databaseName;
-    const queryType = helpers.randomFromArray(this._getQueryTypes());
-    this.QUERY_TYPE = queryType.type;
+    const queryInfo = helpers.randomFromArrayByWeight(
+      this._getQueryInfo(),
+      true
+    );
+    this.QUERY_TEXT = queryInfo.text;
+    this.QUERY_TYPE = queryInfo.type;
     const user = helpers.randomFromArray(LoginHistory.getUsers());
     this.USER_NAME = user.name;
     [this.WAREHOUSE_NAME, this.WAREHOUSE_SIZE] = helpers.randomFromArray([
@@ -29,27 +32,47 @@ export default class QueryHistory extends DataRow {
     this._setExecutionStatus();
     this.START_TIME = date.toISOString();
     this.COMPILATION_TIME = Math.round(Math.random() * 1000);
-    this._setExecutionTime(user.querySpeed, queryType.querySpeed);
+    this._setExecutionTime(user.querySpeed, queryInfo.querySpeed);
     this.QUEUED_REPAIR_TIME = 0;
     this.QUEUED_OVERLOAD_TIME =
       Math.random() < 0.2 ? Math.round(Math.random() * 1000) : 0;
     this._setTransactionBlockedtime();
   }
 
-  _setQueryText() {
-    const queries = ["SHOW USERS", "SHOW WAREHOUSES", "SELECT foo FROM bar"];
-    this.QUERY_TEXT = helpers.randomFromArray(queries);
-  }
-
-  _getQueryTypes() {
+  _getQueryInfo() {
     return [
-      { type: "WITH", querySpeed: 1.2 },
-      { type: "REPLACE", querySpeed: 0.5 },
-      { type: "SHOW", querySpeed: 0.2 },
-      { type: "CREATE", querySpeed: 0.1 },
-      { type: "COPY", querySpeed: 1.5 },
-      { type: "SELECT", querySpeed: 1.9 },
-      { type: "UNKNOWN", querySpeed: 2.2 }
+      {
+        weight: 0.02,
+        type: "UNKNOWN",
+        querySpeed: 2.2,
+        text: "What's all this then?"
+      },
+      {
+        weight: 0.04,
+        type: "CREATE",
+        querySpeed: 0.1,
+        text: "CREATE DATABASE"
+      },
+      { weight: 0.06, type: "COPY", querySpeed: 1.5, text: "COPY TABLE" },
+      { weight: 0.08, type: "SHOW", querySpeed: 0.2, text: "SHOW USERS" },
+      {
+        weight: 0.1,
+        type: "REPLACE",
+        querySpeed: 0.5,
+        text: "REPLACE INTO fooTable"
+      },
+      {
+        weight: 0.2,
+        type: "WITH",
+        querySpeed: 1.2,
+        text: "WITH fooTable (bar)"
+      },
+      {
+        weight: 0.5,
+        type: "SELECT",
+        querySpeed: 1.9,
+        text: "SELECT * FROM fooTable"
+      }
     ];
   }
 
