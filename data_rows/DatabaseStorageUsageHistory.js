@@ -29,12 +29,13 @@ export default class DatabaseStorageUsageHistory extends DataRow {
     if (Math.random() < 0.1) {
       const changeDegree = Math.random() * (0.2 - 0.05) + 0.05;
       const change = Math.round(size * changeDegree);
-      if (Math.random() < 0.5) {
+      if (Math.random() < 0.3) {
         size -= change;
       } else {
         size += change;
       }
     }
+    this.constructor._sizes[this.DATABASE_NAME] = size;
     this.AVERAGE_DATABASE_BYTES = size;
   }
 
@@ -53,7 +54,7 @@ export default class DatabaseStorageUsageHistory extends DataRow {
         `Must call ${this.name}.initialize() only once`
       );
     }
-    const seedSizes = [1e12, 1e13, 1e14, 1e15];
+    const seedSizes = [1.1e15, 1.2e15, 1.3e15, 1.4e15];
     const sizes = {};
     for (const db of dbs) {
       const seed = randomFromArray(seedSizes);
